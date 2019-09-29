@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    >
+
+  <View
+      android:layout_width="0.0dp"
+      android:layout_height="120.0dp"
+      />
+
+  <TextView
+      android:id="@+id/click_list"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/click_list"
+      android:padding="20.0dp"
+      android:textSize="20.0dp"
+      android:textColor="@color/bg"
+      tools:ignore="SpUsage"
+      />
+
+  <View
+      android:layout_width="0.0dp"
+      android:layout_height="120.0dp"
+      />
+
+  <TextView
+      android:id="@+id/click_multi"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/click_multi"
+      android:padding="20.0dp"
+      android:textSize="20.0dp"
+      android:textColor="@color/bg"
+      tools:ignore="SpUsage"
+      />
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">MultiTest</string>
+
+  <string name="click_list">List</string>
+  <string name="click_multi">multi</string>
+
+</resources>

@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Java 中由类名和包名生成 Java文件 的库
+    implementation 'com.squareup:javapoet:1.10.0'
+
+    // Android 由 R 文件生成 Java文件 的库
+    implementation 'com.hendraanggrian:r-parser:0.2'
+
+    implementation project(':expand')
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

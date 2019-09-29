@@ -1,6 +1,16 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.xydianlv'
+
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+  artifactId = 'multi' // 项目名称
+  publishVersion = '1.0.0' // 版本号
+  desc = '多类型滑动列表：Library'
+  repoName = rootProject.ext.repoName
+  userOrg = rootProject.ext.userOrg
+  groupId = rootProject.ext.groupId
+  website = rootProject.ext.website
+}
 
 android {
   compileSdkVersion 28
@@ -19,19 +29,6 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
-  }
-}
-
-buildscript {
-
-  repositories {
-    google()
-    jcenter()
-  }
-
-  dependencies {
-    classpath 'com.android.tools.build:gradle:3.4.2'
-    classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
   }
 }
 

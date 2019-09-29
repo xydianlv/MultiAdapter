@@ -1,5 +1,17 @@
 apply plugin: 'java-library'
 
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    artifactId = 'expand' // 项目名称
+    publishVersion = '1.0.0' // 版本号
+    desc = '多类型滑动列表：Annotate'
+    repoName = rootProject.ext.repoName
+    userOrg = rootProject.ext.userOrg
+    groupId = rootProject.ext.groupId
+    website = rootProject.ext.website
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'

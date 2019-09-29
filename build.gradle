@@ -4,11 +4,11 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
-        
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.novoda:bintray-release:0.9.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,10 +18,51 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// 全局编码设置，在把代码发布到 Jcenter 时代码中可以使用中文
+tasks.withType(JavaCompile){
+    options.encoding = 'UTF-8'
+}
+
+// 关于 repoName ：子.gradle 必须声明这个字段，否则 bintray-release 会查找默认的名为 maven 的库
+// 如果 bintray-release 上没有创建 maven 库，会报 404 错误
+// 关于 groupId ： 这个字段是他人在使用 implementation 获取你的开源代码单引号中间拼的那段字符串，组成为
+//                implementation 'groupId:artifactId:publishVersion'
+//                artifactId、publishVersion 在 子.gradle 中声明
+// 关于 desc ： 对当前上传模块儿的描述，建议在 子.gradle 作当前模块儿的特殊声明
+ext {
+    repoName = 'MultiAdapter' // bintray 仓库名
+    userOrg = 'xydianlv' // bintray 用户名
+    groupId = 'com.xydianlv' // jcenter 上的路径
+    desc = '多类型滑动列表' // 描述
+    website = 'https://github.com/xydianlv/MultiAdapter' // 网站
+}
+
+// 关于如何发布代码到 Jcenter，有两种方式
+
+// 第一种 ：命令行
+
+// ./gradlew clean build bintrayUpload -PbintrayUser=userName -PbintrayKey=api-key -PdryRun=false
+
+// 第二种 ：IDE
+
+// 在 publish {} 中添加 ：
+// bintrayUser = 'userName'
+// bintrayKey = 'api-key'
+// dryRun = false
+
+// 然后点开 Gradle 工具，依次点击
+//    build-clean
+//    build-build
+//    build-assemble
+//    publishing-publishReleasePublicationToMavenLocal
+//    publishing-bintrayUpload
+
+// 同样可以发布代码到 Jcenter

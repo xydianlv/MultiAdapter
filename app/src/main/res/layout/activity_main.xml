@@ -8,36 +8,55 @@
     android:orientation="vertical"
     >
 
-  <View
-      android:layout_width="0.0dp"
-      android:layout_height="120.0dp"
-      />
-
   <TextView
       android:id="@+id/click_list"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="@string/click_list"
       android:padding="20.0dp"
-      android:textSize="20.0dp"
-      android:textColor="@color/bg"
+      android:textSize="16.0dp"
+      android:textColor="@color/ct_1"
       tools:ignore="SpUsage"
       />
 
   <View
-      android:layout_width="0.0dp"
-      android:layout_height="120.0dp"
+      android:layout_width="match_parent"
+      android:layout_height="0.4dp"
+      android:background="@color/line"
       />
 
   <TextView
       android:id="@+id/click_multi"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="@string/click_multi"
       android:padding="20.0dp"
-      android:textSize="20.0dp"
-      android:textColor="@color/bg"
+      android:textSize="16.0dp"
+      android:textColor="@color/ct_1"
       tools:ignore="SpUsage"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.4dp"
+      android:background="@color/line"
+      />
+
+  <TextView
+      android:id="@+id/click_update"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/click_update"
+      android:padding="20.0dp"
+      android:textSize="16.0dp"
+      android:textColor="@color/ct_1"
+      tools:ignore="SpUsage"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.4dp"
+      android:background="@color/line"
       />
 
 </LinearLayout>

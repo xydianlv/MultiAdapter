@@ -12,5 +12,6 @@
   <color name="line">#ffc0c0c0</color>
 
   <color name="bg">#ff5989E7</color>
+  <color name="bg_t">#33c0c0c0</color>
 
 </resources>

@@ -14,10 +14,14 @@ import wyyu.multi.multi.data.DataMulti;
 
 @BindCell(R.layout.layout_cell_multi_a) public class CellMultiA implements IHolderCell {
 
+    @CellView(R.id.item_multi_index) TextView itemIndex;
     @CellView(R.id.item_multi_text) TextView textView;
 
     @Override public void cacheCell(@NonNull Object item) {
-        textView.setText(((DataMulti) item).content);
+        DataMulti dataMulti = (DataMulti) item;
+
+        itemIndex.setText(String.valueOf(dataMulti.index));
+        textView.setText(dataMulti.content);
     }
 
     @Override public void updateCell(@NonNull Object item, int updateType) {

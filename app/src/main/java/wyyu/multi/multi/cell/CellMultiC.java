@@ -17,12 +17,14 @@ import wyyu.multi.multi.data.DataMulti;
 
     @CellView(R.id.item_multi_text) TextView textView;
     @CellView(R.id.item_multi_img) ImageView imageView;
+    @CellView(R.id.item_multi_index) TextView itemIndex;
 
     @Override public void cacheCell(@NonNull Object item) {
         DataMulti dataMulti = (DataMulti) item;
 
         textView.setText(dataMulti.content);
         imageView.setImageResource(dataMulti.resId);
+        itemIndex.setText(String.valueOf(dataMulti.index));
     }
 
     @Override public void updateCell(@NonNull Object item, int updateType) {

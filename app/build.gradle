@@ -36,6 +36,8 @@ dependencies {
     // 官方MVP架构 LifeCycle
     implementation "android.arch.lifecycle:runtime:1.1.1"
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+    // 消息收发框架
+    implementation 'com.jeremyliao:live-event-bus:1.1.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

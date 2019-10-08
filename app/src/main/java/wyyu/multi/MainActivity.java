@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import wyyu.multi.list.ActivityList;
 import wyyu.multi.multi.ActivityMultiList;
+import wyyu.multi.update.ActivityUpdateList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.click_multi).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ActivityMultiList.class));
+            }
+        });
+
+        findViewById(R.id.click_update).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                ActivityUpdateList.open(MainActivity.this);
             }
         });
     }

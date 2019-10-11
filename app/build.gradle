@@ -39,6 +39,25 @@ dependencies {
     // 消息收发框架
     implementation 'com.jeremyliao:live-event-bus:1.1.0'
 
+    // Litho 动态加载布局框架
+    //noinspection GradleDependency
+    implementation 'com.facebook.litho:litho-core:0.21.0'
+    //noinspection GradleDependency
+    implementation 'com.facebook.litho:litho-widget:0.21.0'
+    //noinspection GradleDependency
+    implementation 'com.facebook.litho:litho-annotations:0.21.0'
+    //noinspection GradleDependency
+    annotationProcessor 'com.facebook.litho:litho-processor:0.21.0'
+    // Litho 框架已扩展的自定义控件
+    //noinspection GradleDependency
+    implementation 'com.facebook.litho:litho-sections-core:0.21.0'
+    //noinspection GradleDependency
+    implementation 'com.facebook.litho:litho-sections-widget:0.21.0'
+    //noinspection GradleDependency
+    implementation 'com.facebook.litho:litho-sections-annotations:0.21.0'
+    // Litho 初始化
+    implementation 'com.facebook.soloader:soloader:0.6.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

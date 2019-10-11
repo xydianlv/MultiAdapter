@@ -59,4 +59,21 @@
       android:background="@color/line"
       />
 
+  <TextView
+      android:id="@+id/click_litho"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/click_litho"
+      android:padding="20.0dp"
+      android:textSize="16.0dp"
+      android:textColor="@color/ct_1"
+      tools:ignore="SpUsage"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.4dp"
+      android:background="@color/line"
+      />
+
 </LinearLayout>

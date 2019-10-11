@@ -134,6 +134,7 @@ public class ProcessorHolder extends AbstractProcessor {
         builder.append("import android.support.v7.widget.RecyclerView;\n");
         builder.append("import android.support.annotation.NonNull;\n");
         builder.append("import com.wyyu.multi.holder.IViewHolder;\n");
+        builder.append("import com.wyyu.multi.cell.IHolderCellWithCreate;\n");
         builder.append("import android.view.LayoutInflater;\n");
         builder.append("import android.view.ViewGroup;\n");
         builder.append("import android.view.View;\n\n");
@@ -183,6 +184,11 @@ public class ProcessorHolder extends AbstractProcessor {
                 builder.append(viewMap.get(key)).append(");\n");
             }
         }
+
+        builder.append("\n");
+        builder.append("            if (cell instanceof IHolderCellWithCreate) {\n");
+        builder.append("                ((IHolderCellWithCreate) cell).onCreateView(itemView);\n");
+        builder.append("            }\n");
 
         builder.append("        }\n");
         builder.append("    }\n");

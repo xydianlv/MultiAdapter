@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import wyyu.multi.litho.ActivityLithoCardList;
 import wyyu.multi.list.ActivityList;
 import wyyu.multi.multi.ActivityMultiList;
 import wyyu.multi.update.ActivityUpdateList;
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.click_update).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 ActivityUpdateList.open(MainActivity.this);
+            }
+        });
+
+        findViewById(R.id.click_litho).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                ActivityLithoCardList.open(MainActivity.this);
             }
         });
     }

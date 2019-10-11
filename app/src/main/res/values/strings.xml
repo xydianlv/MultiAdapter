@@ -6,6 +6,7 @@
   <string name="click_list">List</string>
   <string name="click_multi">multi</string>
   <string name="click_update">update</string>
+  <string name="click_litho">litho</string>
 
   <string name="cell_notify">点击右侧区域开始动画，点击左侧方块儿刷新点击次数，并会刷新整个卡片</string>
   <string name="cell_update">点击左侧区域开始动画，点击底部方块儿刷新点击个数，只会更新底部数字</string>

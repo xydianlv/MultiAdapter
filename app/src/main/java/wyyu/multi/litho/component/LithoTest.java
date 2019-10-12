@@ -3,17 +3,21 @@ package wyyu.multi.litho.component;
 import android.text.TextUtils;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import com.facebook.litho.ClickEvent;
 import com.facebook.litho.Column;
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLifecycle;
+import com.facebook.litho.EventHandler;
 import com.facebook.litho.Row;
 import com.facebook.litho.StateContainer;
 import com.facebook.litho.widget.Image;
 import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaEdge;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import wyyu.multi.litho.data.DataTest;
 import wyyu.multi.R;
+import wyyu.multi.litho.event.EventRefreshLitho;
 
 /**
  * Created by wyyu on 2019-10-11.
@@ -45,6 +49,7 @@ class LithoTest extends Component {
                     .textSizeDip(15.0f)
                     .textColor(0xff333333)
                     .minWidthDip(32.0f)
+                    .clickHandler(new EventHandler<ClickEvent>(this, 0, new Object[] { index }))
                     .text(index)
                     .build())
                 .child(Column.create(componentContext)
@@ -75,6 +80,17 @@ class LithoTest extends Component {
 
     @Override public boolean hasState() {
         return true;
+    }
+
+    @Override
+    public Object dispatchOnEvent(final EventHandler eventHandler, final Object eventState) {
+        if (eventHandler.id == 0) {
+            dataCell.index = dataCell.index + 102;
+            LiveEventBus.get()
+                .with(EventRefreshLitho.EVENT)
+                .setValue(new EventRefreshLitho(dataCell));
+        }
+        return null;
     }
 
     void setCellData(DataTest dataCell) {

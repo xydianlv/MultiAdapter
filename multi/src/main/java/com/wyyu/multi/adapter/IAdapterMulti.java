@@ -15,9 +15,18 @@ import java.util.List;
  * initItemList、appendItemList、insertItem、removeItem ： 列表的 增、删 操作
  *
  * updateItem、notifyItem ： 刷新 Item
+ *
+ * MultiAdapter 中已实现的方法无法满足需求时，可新建一个子类继承 MultiAdapter，再编写符合需求的方法或变量
  **/
 
 public interface IAdapterMulti<T, V> {
+
+    /**
+     * 获取 Adapter 中当前持有的数据列表
+     *
+     * @return 数据列表
+     */
+    List<V> getItemList();
 
     /**
      * 注册一种 Holder 类型到 Adapter

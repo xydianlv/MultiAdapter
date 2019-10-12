@@ -16,6 +16,8 @@ import wyyu.multi.litho.widget.LithoContainerTest;
 
 @BindCell(R.layout.layout_cell_litho_t) public class CellTestC implements IHolderCellWithCreate {
 
+    public static final int UPDATE_A = 0;
+
     private LithoTestRoot cellRoot;
 
     @Override public void onCreateView(@NonNull View itemView) {
@@ -35,6 +37,8 @@ import wyyu.multi.litho.widget.LithoContainerTest;
     }
 
     @Override public void updateCell(@NonNull Object item, int updateType) {
-
+        if (updateType == UPDATE_A) {
+            cellRoot.setDefineData((DataTest) item);
+        }
     }
 }

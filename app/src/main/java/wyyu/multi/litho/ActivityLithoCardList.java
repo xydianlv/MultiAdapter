@@ -1,14 +1,17 @@
 package wyyu.multi.litho;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.wyyu.multi.adapter.MultiAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,7 @@ import wyyu.multi.litho.cell.CellTestB;
 import wyyu.multi.litho.data.DataTest;
 import wyyu.multi.litho.data.DataTypeT;
 import wyyu.multi.R;
+import wyyu.multi.litho.event.EventRefreshLitho;
 
 /**
  * Created by wyyu on 2019-10-11.
@@ -55,8 +59,22 @@ public class ActivityLithoCardList extends AppCompatActivity {
     }
 
     private void initActivity() {
+        registerEvent();
         initView();
         loadList();
+    }
+
+    private void registerEvent() {
+        LiveEventBus.get()
+            .with(EventRefreshLitho.EVENT, EventRefreshLitho.class)
+            .observe(this, new Observer<EventRefreshLitho>() {
+                @Override public void onChanged(@Nullable EventRefreshLitho event) {
+                    if (multiAdapter == null || event == null || event.dataTest == null) {
+                        return;
+                    }
+                    multiAdapter.updateItem(recycler, event.dataTest, CellTestC.UPDATE_A);
+                }
+            });
     }
 
     private void initView() {

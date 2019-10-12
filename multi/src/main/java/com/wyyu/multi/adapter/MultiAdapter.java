@@ -45,6 +45,10 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter implements IAdapter
         return itemList == null ? 0 : itemList.size();
     }
 
+    @Override public List<V> getItemList() {
+        return itemList;
+    }
+
     @Override public void register(@NonNull T keyValue, @NonNull IHolderCell holderCell) {
         cellManager.register(keyValue, holderCell);
     }

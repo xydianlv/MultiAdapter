@@ -2,11 +2,10 @@ package wyyu.multi.litho.cell;
 
 import android.support.annotation.NonNull;
 import android.view.View;
-import com.facebook.litho.LithoView;
 import com.wyyu.expand.BindCell;
 import com.wyyu.multi.cell.IHolderCellWithCreate;
 import wyyu.multi.R;
-import wyyu.multi.litho.component.LithoTestRoot;
+import wyyu.multi.litho.component.ComponentCell;
 import wyyu.multi.litho.data.DataTest;
 import wyyu.multi.litho.widget.LithoContainerTest;
 
@@ -18,7 +17,7 @@ import wyyu.multi.litho.widget.LithoContainerTest;
 
     public static final int UPDATE_A = 0;
 
-    private LithoTestRoot cellRoot;
+    private ComponentCell componentCell;
 
     @Override public void onCreateView(@NonNull View itemView) {
         if (!(itemView instanceof LithoContainerTest)) {
@@ -28,17 +27,17 @@ import wyyu.multi.litho.widget.LithoContainerTest;
         LithoContainerTest container = (LithoContainerTest) itemView;
         container.removeAllViews();
 
-        cellRoot = new LithoTestRoot();
-        container.addView(LithoView.create(itemView.getContext(), cellRoot));
+        componentCell = new ComponentCell();
+        container.addView(componentCell.createView(itemView.getContext()));
     }
 
     @Override public void cacheCell(@NonNull Object item) {
-        cellRoot.setDefineData((DataTest) item);
+        componentCell.setViewData((DataTest) item);
     }
 
     @Override public void updateCell(@NonNull Object item, int updateType) {
         if (updateType == UPDATE_A) {
-            cellRoot.setDefineData((DataTest) item);
+            componentCell.setViewData((DataTest) item);
         }
     }
 }

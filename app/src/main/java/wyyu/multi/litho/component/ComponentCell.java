@@ -7,54 +7,48 @@ import com.facebook.litho.ClickEvent;
 import com.facebook.litho.Column;
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
-import com.facebook.litho.ComponentLifecycle;
 import com.facebook.litho.EventHandler;
 import com.facebook.litho.Row;
-import com.facebook.litho.StateContainer;
 import com.facebook.litho.widget.Image;
 import com.facebook.litho.widget.Text;
 import com.facebook.yoga.YogaEdge;
 import com.jeremyliao.liveeventbus.LiveEventBus;
-import wyyu.multi.litho.data.DataTest;
 import wyyu.multi.R;
+import wyyu.multi.litho.base.AbsComponent;
+import wyyu.multi.litho.data.DataTest;
 import wyyu.multi.litho.event.EventRefreshLitho;
 
 /**
- * Created by wyyu on 2019-10-11.
+ * Created by wyyu on 2019-10-12.
  **/
 
-class LithoTest extends Component {
+public class ComponentCell extends AbsComponent<DataTest> {
 
-    private DataTest dataCell;
-
-    LithoTest() {
-        super("LithoTest");
-        dataCell = null;
+    public ComponentCell() {
+        super("ComponentCell");
     }
 
-    @Override protected Component onCreateLayout(ComponentContext componentContext) {
-        setScopedContext(componentContext);
+    @Override public Component createLayout(ComponentContext context, DataTest dataTest) {
+        String index = dataTest == null ? "-1" : String.valueOf(dataTest.index);
+        String content = dataTest == null ? "空内容" : dataTest.content;
+        int resId = dataTest == null ? R.mipmap.ic_launcher : dataTest.resId;
 
-        String index = dataCell == null ? "-1" : String.valueOf(dataCell.index);
-        String content = dataCell == null ? "空内容" : dataCell.content;
-        int resId = dataCell == null ? R.mipmap.ic_launcher : dataCell.resId;
-
-        return Column.create(componentContext)
+        return Column.create(context)
             .widthDip(WindowManager.LayoutParams.MATCH_PARENT)
             .heightDip(WindowManager.LayoutParams.WRAP_CONTENT)
-            .child(Row.create(componentContext)
+            .child(Row.create(context)
                 .paddingDip(YogaEdge.HORIZONTAL, 14.0f)
                 .paddingDip(YogaEdge.VERTICAL, 12.0f)
-                .child(Text.create(componentContext)
+                .child(Text.create(context)
                     .textSizeDip(15.0f)
                     .textColor(0xff333333)
                     .minWidthDip(32.0f)
                     .clickHandler(new EventHandler<ClickEvent>(this, 0, new Object[] { index }))
                     .text(index)
                     .build())
-                .child(Column.create(componentContext)
+                .child(Column.create(context)
                     .marginDip(YogaEdge.LEFT, 14.0f)
-                    .child(Text.create(componentContext)
+                    .child(Text.create(context)
                         .textSizeDip(15.0f)
                         .textColor(0xff333333)
                         .minWidthDip(32.0f)
@@ -63,14 +57,14 @@ class LithoTest extends Component {
                         .maxLines(2)
                         .text(content)
                         .build())
-                    .child(Image.create(componentContext)
+                    .child(Image.create(context)
                         .marginDip(YogaEdge.TOP, 8.0f)
                         .heightDip(210.0f)
                         .scaleType(ImageView.ScaleType.CENTER_CROP)
                         .drawableRes(resId)
                         .build()))
                 .build())
-            .child(Row.create(componentContext)
+            .child(Row.create(context)
                 .widthDip(WindowManager.LayoutParams.MATCH_PARENT)
                 .heightDip(0.4f)
                 .backgroundColor(0xffc0c0c0)
@@ -78,34 +72,12 @@ class LithoTest extends Component {
             .build();
     }
 
-    @Override public boolean hasState() {
-        return true;
-    }
-
     @Override
     public Object dispatchOnEvent(final EventHandler eventHandler, final Object eventState) {
         if (eventHandler.id == 0) {
-            dataCell.index = dataCell.index + 102;
-            LiveEventBus.get()
-                .with(EventRefreshLitho.EVENT)
-                .setValue(new EventRefreshLitho(dataCell));
+            data.index = data.index + 102;
+            LiveEventBus.get().with(EventRefreshLitho.EVENT).setValue(new EventRefreshLitho(data));
         }
         return null;
-    }
-
-    void setCellData(DataTest dataCell) {
-        this.dataCell = dataCell;
-
-        ComponentContext context = getScopedContext();
-        if (context != null) {
-            context.updateStateAsync(new CellUpdate(), "SimpleInfo.refreshInfo");
-        }
-    }
-
-    private static final class CellUpdate implements ComponentLifecycle.StateUpdate {
-
-        @Override public void updateState(StateContainer stateContainer) {
-
-        }
     }
 }

@@ -5,6 +5,6 @@
 致力于解决 RecyclerView 对多类型卡片的分配问题，让开发者可以更专注于卡片中具体业务的实现
 
 ## Gradle
-    implementation 'com.xydianlv:expand:1.0.0'
-    implementation 'com.xydianlv:multi:1.0.0'
-    annotationProcessor 'com.xydianlv:processor:1.0.0'
+    implementation 'com.xydianlv:expand:1.0.1'
+    implementation 'com.xydianlv:multi:1.0.1'
+    annotationProcessor 'com.xydianlv:processor:1.0.1'

@@ -73,8 +73,9 @@ public interface IAdapterMulti<T, V> {
      * @param recyclerView 用来获取 ViewHolder
      * @param item 变更后的数据
      * @param updateType 刷新类型，在 HolderBinder 中定制局部刷新方式
+     * @param params 更新 Item 的扩展参数
      */
-    void updateItem(@NonNull RecyclerView recyclerView, V item, int updateType);
+    void updateItem(@NonNull RecyclerView recyclerView, V item, int updateType, Object... params);
 
     /**
      * 根据新变更的数据局部刷新 ItemView
@@ -82,8 +83,10 @@ public interface IAdapterMulti<T, V> {
      * @param recyclerView 用来获取 ViewHolder
      * @param position 发生变更的 Position
      * @param updateType 刷新类型，在 HolderBinder 中定制局部刷新方式
+     * @param params 更新 Item 的扩展参数
      */
-    void updateItem(@NonNull RecyclerView recyclerView, int position, int updateType);
+    void updateItem(@NonNull RecyclerView recyclerView, int position, int updateType,
+        Object... params);
 
     /**
      * 更新整个 Item

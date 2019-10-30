@@ -20,7 +20,7 @@ import wyyu.multi.list.data.DataB;
         textView.setText(String.valueOf(((DataB) item).index));
     }
 
-    @Override public void updateCell(@NonNull Object item, int updateType) {
+    @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {
 
     }
 }

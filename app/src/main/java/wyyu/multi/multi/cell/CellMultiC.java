@@ -27,7 +27,7 @@ import wyyu.multi.multi.data.DataMulti;
         itemIndex.setText(String.valueOf(dataMulti.index));
     }
 
-    @Override public void updateCell(@NonNull Object item, int updateType) {
+    @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {
 
     }
 }

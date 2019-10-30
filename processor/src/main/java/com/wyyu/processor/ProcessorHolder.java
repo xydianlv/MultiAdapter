@@ -163,9 +163,9 @@ public class ProcessorHolder extends AbstractProcessor {
         builder.append("    @Override\n");
         builder.append("    public void updateItem");
         builder.append("(@NonNull RecyclerView.ViewHolder holder, @NonNull Object item,");
-        builder.append(" int updateType) {\n");
+        builder.append(" int updateType, Object... params) {\n");
         builder.append("        ((").append(holderName).append(")holder).cell");
-        builder.append(".updateCell(item, updateType);\n");
+        builder.append(".updateCell(item, updateType, params);\n");
         builder.append("    }\n\n");
 
         builder.append("    private static class ").append(holderName);

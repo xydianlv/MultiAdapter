@@ -101,7 +101,8 @@ public abstract class AbsCellManager<T, V> implements ICellManager<T, V> {
     }
 
     @Override
-    public void updateItem(@NonNull RecyclerView.ViewHolder holder, V item, int updateType) {
-        holderArray[holder.getItemViewType()].updateItem(holder, item, updateType);
+    public void updateItem(@NonNull RecyclerView.ViewHolder holder, V item, int updateType,
+        Object... params) {
+        holderArray[holder.getItemViewType()].updateItem(holder, item, updateType, params);
     }
 }

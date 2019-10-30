@@ -30,7 +30,7 @@ import wyyu.multi.update.player.PlayerListener;
         cachePlay(dataNotify);
     }
 
-    @Override public void updateCell(@NonNull Object item, int updateType) {
+    @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {
 
     }
 

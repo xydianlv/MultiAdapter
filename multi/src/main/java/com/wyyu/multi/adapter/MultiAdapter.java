@@ -100,7 +100,8 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter implements IAdapter
         notifyItemRemoved(index);
     }
 
-    @Override public void updateItem(@NonNull RecyclerView recyclerView, V item, int updateType) {
+    @Override public void updateItem(@NonNull RecyclerView recyclerView, V item, int updateType,
+        Object... params) {
         if (item == null || this.itemList == null || this.itemList.isEmpty()) {
             return;
         }
@@ -115,7 +116,8 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter implements IAdapter
     }
 
     @Override
-    public void updateItem(@NonNull RecyclerView recyclerView, int position, int updateType) {
+    public void updateItem(@NonNull RecyclerView recyclerView, int position, int updateType,
+        Object... params) {
         if (this.itemList == null || this.itemList.isEmpty()) {
             return;
         }

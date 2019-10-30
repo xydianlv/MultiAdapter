@@ -25,7 +25,7 @@ import wyyu.multi.multi.data.DataMulti;
         imageView.setImageResource(dataMulti.resId);
     }
 
-    @Override public void updateCell(@NonNull Object item, int updateType) {
+    @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {
 
     }
 }

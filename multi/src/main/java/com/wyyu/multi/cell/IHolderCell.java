@@ -10,5 +10,5 @@ public interface IHolderCell {
 
     void cacheCell(@NonNull Object item);
 
-    void updateCell(@NonNull Object item, int updateType);
+    void updateCell(@NonNull Object item, int updateType, Object... params);
 }

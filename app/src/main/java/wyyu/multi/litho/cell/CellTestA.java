@@ -25,7 +25,7 @@ import wyyu.multi.R;
         textView.setText(dataCell.content);
     }
 
-    @Override public void updateCell(@NonNull Object item, int updateType) {
+    @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {
 
     }
 }

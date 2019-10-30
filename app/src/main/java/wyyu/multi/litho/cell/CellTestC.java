@@ -35,7 +35,7 @@ import wyyu.multi.litho.widget.LithoContainerTest;
         componentCell.setViewData((DataTest) item);
     }
 
-    @Override public void updateCell(@NonNull Object item, int updateType) {
+    @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {
         if (updateType == UPDATE_A) {
             componentCell.setViewData((DataTest) item);
         }

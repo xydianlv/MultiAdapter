@@ -64,6 +64,8 @@ public interface ICellManager<T, V> {
      * @param holder 持有该数据的 ViewHolder
      * @param item 变更后的数据
      * @param updateType 刷新类型，在 HolderBinder 中定制局部刷新方式
+     * @param params 更新 Item 的扩展参数
      */
-    void updateItem(@NonNull RecyclerView.ViewHolder holder, V item, int updateType);
+    void updateItem(@NonNull RecyclerView.ViewHolder holder, V item, int updateType,
+        Object... params);
 }

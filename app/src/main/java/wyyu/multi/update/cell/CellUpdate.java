@@ -32,7 +32,7 @@ import wyyu.multi.update.player.PlayerListener;
         cachePlay(dataUpdate);
     }
 
-    @Override public void updateCell(@NonNull Object item, int updateType) {
+    @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {
         if (updateType == UPDATE_A) {
             refreshNumber(((DataUpdate) item).num);
         }

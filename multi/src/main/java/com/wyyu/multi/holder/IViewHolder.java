@@ -15,5 +15,5 @@ public interface IViewHolder {
     void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @NonNull Object item);
 
     void updateItem(@NonNull RecyclerView.ViewHolder viewHolder, @NonNull Object item,
-        int updateType);
+        int updateType, Object... params);
 }

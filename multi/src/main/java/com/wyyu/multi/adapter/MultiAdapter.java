@@ -112,7 +112,7 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter implements IAdapter
         if (viewHolder == null) {
             return;
         }
-        cellManager.updateItem(viewHolder, item, updateType);
+        cellManager.updateItem(viewHolder, item, updateType, params);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter implements IAdapter
         if (viewHolder == null) {
             return;
         }
-        cellManager.updateItem(viewHolder, item, updateType);
+        cellManager.updateItem(viewHolder, item, updateType, params);
     }
 
     @Override public void notifyItem(V item) {

@@ -1,6 +1,7 @@
 package com.wyyu.multi.cell;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import com.wyyu.multi.holder.IViewHolder;
@@ -98,6 +99,11 @@ public abstract class AbsCellManager<T, V> implements ICellManager<T, V> {
 
     @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, V item) {
         holderArray[holder.getItemViewType()].onBindViewHolder(holder, item);
+    }
+
+    @Override public void bindViewHolderParams(@NonNull RecyclerView.ViewHolder viewHolder,
+        @Nullable Object... params) {
+        holderArray[viewHolder.getItemViewType()].bindViewHolderParams(viewHolder, params);
     }
 
     @Override

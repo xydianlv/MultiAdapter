@@ -35,6 +35,7 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter implements IAdapter
 
     @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         cellManager.onBindViewHolder(viewHolder, itemList.get(i));
+        cellManager.bindViewHolderParams(viewHolder, getBindParams());
     }
 
     @Override public int getItemViewType(int position) {
@@ -43,6 +44,10 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter implements IAdapter
 
     @Override public int getItemCount() {
         return itemList == null ? 0 : itemList.size();
+    }
+
+    @Override public Object[] getBindParams() {
+        return new Object[0];
     }
 
     @Override public List<V> getItemList() {

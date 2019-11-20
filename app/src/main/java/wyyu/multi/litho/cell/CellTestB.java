@@ -1,6 +1,7 @@
 package wyyu.multi.litho.cell;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.wyyu.expand.BindCell;
@@ -23,6 +24,10 @@ import wyyu.multi.R;
 
         itemIndex.setText(String.valueOf(dataCell.index));
         imageView.setImageResource(dataCell.resId);
+    }
+
+    @Override public void bindParams(@Nullable Object... params) {
+
     }
 
     @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {

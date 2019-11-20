@@ -22,6 +22,13 @@ import java.util.List;
 public interface IAdapterMulti<T, V> {
 
     /**
+     * 获取在调用 onBindViewHolder 时，需要向 ViewHolder 传入的扩展参数列表
+     *
+     * @return 参数列表
+     */
+    Object[] getBindParams();
+
+    /**
      * 获取 Adapter 中当前持有的数据列表
      *
      * @return 数据列表

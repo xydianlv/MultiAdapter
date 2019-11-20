@@ -1,6 +1,7 @@
 package com.wyyu.multi.cell;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -57,6 +58,14 @@ public interface ICellManager<T, V> {
      * @param item 数据
      */
     void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, V item);
+
+    /**
+     * 在调用 onBindViewHolder 时，为 ViewHolder 设置扩展参数
+     *
+     * @param params 参数列表
+     */
+    void bindViewHolderParams(@NonNull RecyclerView.ViewHolder viewHolder,
+        @Nullable Object... params);
 
     /**
      * 根据新变更的数据局部刷新 ItemView

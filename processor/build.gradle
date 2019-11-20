@@ -4,7 +4,7 @@ apply plugin: 'com.novoda.bintray-release'
 
 publish {
     artifactId = 'processor' // 项目名称
-    publishVersion = '1.0.3' // 版本号
+    publishVersion = '1.1.0' // 版本号
     desc = '多类型滑动列表：Processor'
     repoName = rootProject.ext.repoName
     userOrg = rootProject.ext.userOrg
@@ -16,7 +16,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Java 中由类名和包名生成 Java文件 的库
-    implementation 'com.squareup:javapoet:1.10.0'
+    implementation 'com.squareup:javapoet:1.11.1'
 
     // Android 由 R 文件生成 Java文件 的库
     implementation 'com.hendraanggrian:r-parser:0.2'

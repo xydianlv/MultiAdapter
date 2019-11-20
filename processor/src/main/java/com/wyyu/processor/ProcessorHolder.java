@@ -133,6 +133,7 @@ public class ProcessorHolder extends AbstractProcessor {
 
         builder.append("import android.support.v7.widget.RecyclerView;\n");
         builder.append("import android.support.annotation.NonNull;\n");
+        builder.append("import android.support.annotation.Nullable;\n");
         builder.append("import com.wyyu.multi.holder.IViewHolder;\n");
         builder.append("import com.wyyu.multi.cell.IHolderCellWithCreate;\n");
         builder.append("import android.view.LayoutInflater;\n");
@@ -158,6 +159,13 @@ public class ProcessorHolder extends AbstractProcessor {
         builder.append("    public void onBindViewHolder");
         builder.append("(@NonNull RecyclerView.ViewHolder holder, @NonNull Object item) {\n");
         builder.append("        ((").append(holderName).append(")holder).cell.cacheCell(item);\n");
+        builder.append("    }\n\n");
+
+        builder.append("    @Override\n");
+        builder.append("    public void bindViewHolderParams");
+        builder.append("(@NonNull RecyclerView.ViewHolder holder, @Nullable Object... params) {\n");
+        builder.append("        ((").append(holderName).append(")holder)");
+        builder.append(".cell.bindParams(params);\n");
         builder.append("    }\n\n");
 
         builder.append("    @Override\n");
@@ -191,6 +199,13 @@ public class ProcessorHolder extends AbstractProcessor {
         builder.append("            }\n");
 
         builder.append("        }\n");
+
+        builder.append("        private void bindParams(Object... params) {\n");
+        builder.append("            if (cell != null) {\n");
+        builder.append("                cell.bindParams(params);\n");
+        builder.append("            }\n");
+        builder.append("        }\n");
+
         builder.append("    }\n");
 
         builder.append("}\n");

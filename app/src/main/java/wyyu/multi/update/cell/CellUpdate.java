@@ -1,6 +1,7 @@
 package wyyu.multi.update.cell;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 import com.jeremyliao.liveeventbus.LiveEventBus;
@@ -30,6 +31,10 @@ import wyyu.multi.update.player.PlayerListener;
 
         cacheValue(dataUpdate);
         cachePlay(dataUpdate);
+    }
+
+    @Override public void bindParams(@Nullable Object... params) {
+
     }
 
     @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {

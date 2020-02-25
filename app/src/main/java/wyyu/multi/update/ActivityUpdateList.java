@@ -15,6 +15,7 @@ import butterknife.Unbinder;
 import com.jeremyliao.liveeventbus.LiveEventBus;
 import com.wyyu.multi.adapter.MultiAdapter;
 import com.wyyu.multi.cell.ClassCellManager;
+import com.wyyu.multi.cell.IHolderCell;
 import java.util.ArrayList;
 import java.util.List;
 import rx.Observable;
@@ -28,6 +29,7 @@ import wyyu.multi.update.cell.CellUpdate;
 import wyyu.multi.update.data.DataNotify;
 import wyyu.multi.update.data.DataUpdate;
 import wyyu.multi.update.event.EventNotifyItem;
+import wyyu.multi.update.event.EventOnClickContent;
 import wyyu.multi.update.event.EventUpdateItem;
 
 /**
@@ -43,8 +45,9 @@ public class ActivityUpdateList extends AppCompatActivity {
     @BindView(R.id.update_list_recycler) RecyclerView recyclerView;
 
     private MultiAdapter<Class<?>, Object> adapter;
-
     private Unbinder unbinder;
+
+    private static int value = 0;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +89,25 @@ public class ActivityUpdateList extends AppCompatActivity {
                     if (adapter != null && event != null) {
                         adapter.updateItem(recyclerView, event.dataUpdate, CellUpdate.UPDATE_A);
                     }
+                }
+            });
+
+        LiveEventBus.get()
+            .with(EventOnClickContent.EVENT, EventOnClickContent.class)
+            .observe(this, new Observer<EventOnClickContent>() {
+                @Override public void onChanged(@Nullable EventOnClickContent event) {
+                    if (event == null || adapter == null || recyclerView == null) {
+                        return;
+                    }
+                    IHolderCell holderCell =
+                        adapter.findCellFromPosition(recyclerView, event.index);
+                    if (holderCell instanceof CellNotify) {
+                        ((CellNotify) holderCell).refreshTextColor(value);
+                    }
+                    if (holderCell instanceof CellUpdate) {
+                        ((CellUpdate) holderCell).refreshTextColor(value);
+                    }
+                    value++;
                 }
             });
     }

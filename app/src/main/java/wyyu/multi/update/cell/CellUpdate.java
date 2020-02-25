@@ -10,6 +10,7 @@ import com.wyyu.expand.CellView;
 import com.wyyu.multi.cell.IHolderCell;
 import wyyu.multi.R;
 import wyyu.multi.update.data.DataUpdate;
+import wyyu.multi.update.event.EventOnClickContent;
 import wyyu.multi.update.event.EventUpdateItem;
 import wyyu.multi.update.player.CellPlayer;
 import wyyu.multi.update.player.PlayerListener;
@@ -22,6 +23,7 @@ import wyyu.multi.update.player.PlayerListener;
 
     public static final int UPDATE_A = 0;
 
+    @CellView(R.id.cell_update_content) TextView content;
     @CellView(R.id.cell_update_index) TextView itemIndex;
     @CellView(R.id.cell_update_play) TextView playAnim;
     @CellView(R.id.cell_update_num) TextView number;
@@ -29,6 +31,7 @@ import wyyu.multi.update.player.PlayerListener;
     @Override public void cacheCell(@NonNull Object item) {
         DataUpdate dataUpdate = (DataUpdate) item;
 
+        cacheContent(dataUpdate);
         cacheValue(dataUpdate);
         cachePlay(dataUpdate);
     }
@@ -41,6 +44,16 @@ import wyyu.multi.update.player.PlayerListener;
         if (updateType == UPDATE_A) {
             refreshNumber(((DataUpdate) item).num);
         }
+    }
+
+    private void cacheContent(final DataUpdate dataUpdate) {
+        content.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                LiveEventBus.get()
+                    .with(EventOnClickContent.EVENT)
+                    .setValue(new EventOnClickContent(dataUpdate.index));
+            }
+        });
     }
 
     private void cacheValue(final DataUpdate dataUpdate) {
@@ -82,5 +95,12 @@ import wyyu.multi.update.player.PlayerListener;
 
     private void refreshAnim(int data) {
         playAnim.setText(data == 0 ? "Play" : String.valueOf(data));
+    }
+
+    public void refreshTextColor(int value) {
+        if (content == null) {
+            return;
+        }
+        content.setTextColor(value % 2 == 0 ? 0xff333333 : 0xff5989E7);
     }
 }

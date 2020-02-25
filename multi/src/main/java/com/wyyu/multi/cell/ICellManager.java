@@ -43,6 +43,14 @@ public interface ICellManager<T, V> {
     T loadKeyFromItem(@NonNull V item);
 
     /**
+     * 通过 ViewHolder 找到持有的 HolderCell 对象
+     *
+     * @param holder ViewHolder
+     * @return IHolderCell
+     */
+    IHolderCell findCellFromViewHolder(@NonNull RecyclerView.ViewHolder holder);
+
+    /**
      * 根据 ViewType 创建相应的 ViewHolder
      *
      * @param parent 父布局

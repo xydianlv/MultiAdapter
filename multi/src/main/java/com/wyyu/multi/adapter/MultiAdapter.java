@@ -148,6 +148,13 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter implements IAdapter
         notifyItemChanged(this.itemList.indexOf(item));
     }
 
+    @Override
+    public IHolderCell findCellFromPosition(@NonNull RecyclerView recyclerView, int position) {
+        RecyclerView.ViewHolder viewHolder =
+            recyclerView.findViewHolderForAdapterPosition(position);
+        return viewHolder == null ? null : cellManager.findCellFromViewHolder(viewHolder);
+    }
+
     private void replaceItem(V item) {
         if (itemList == null || itemList.isEmpty()) {
             return;

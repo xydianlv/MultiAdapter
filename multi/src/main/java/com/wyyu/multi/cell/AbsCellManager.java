@@ -111,4 +111,9 @@ public abstract class AbsCellManager<T, V> implements ICellManager<T, V> {
         Object... params) {
         holderArray[holder.getItemViewType()].updateItem(holder, item, updateType, params);
     }
+
+    @Override
+    public IHolderCell findCellFromViewHolder(@NonNull RecyclerView.ViewHolder holder) {
+        return holderArray[holder.getItemViewType()].findCellFromViewHolder(holder);
+    }
 }

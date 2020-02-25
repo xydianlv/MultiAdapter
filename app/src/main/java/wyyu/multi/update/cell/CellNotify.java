@@ -11,6 +11,7 @@ import com.wyyu.multi.cell.IHolderCell;
 import wyyu.multi.R;
 import wyyu.multi.update.event.EventNotifyItem;
 import wyyu.multi.update.data.DataNotify;
+import wyyu.multi.update.event.EventOnClickContent;
 import wyyu.multi.update.player.CellPlayer;
 import wyyu.multi.update.player.PlayerListener;
 
@@ -20,6 +21,7 @@ import wyyu.multi.update.player.PlayerListener;
 
 @BindCell(R.layout.layout_cell_notify) public class CellNotify implements IHolderCell {
 
+    @CellView(R.id.cell_notify_content) TextView content;
     @CellView(R.id.cell_notify_index) TextView itemIndex;
     @CellView(R.id.cell_notify_play) TextView playAnim;
     @CellView(R.id.cell_notify_num) TextView number;
@@ -27,6 +29,7 @@ import wyyu.multi.update.player.PlayerListener;
     @Override public void cacheCell(@NonNull Object item) {
         DataNotify dataNotify = (DataNotify) item;
 
+        cacheContent(dataNotify);
         cacheValue(dataNotify);
         cachePlay(dataNotify);
     }
@@ -37,6 +40,16 @@ import wyyu.multi.update.player.PlayerListener;
 
     @Override public void updateCell(@NonNull Object item, int updateType, Object... params) {
 
+    }
+
+    private void cacheContent(final DataNotify dataNotify) {
+        content.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                LiveEventBus.get()
+                    .with(EventOnClickContent.EVENT)
+                    .setValue(new EventOnClickContent(dataNotify.index));
+            }
+        });
     }
 
     private void cacheValue(final DataNotify dataNotify) {
@@ -78,5 +91,12 @@ import wyyu.multi.update.player.PlayerListener;
 
     private void refreshAnim(int data) {
         playAnim.setText(data == 0 ? "Play" : String.valueOf(data));
+    }
+
+    public void refreshTextColor(int value) {
+        if (content == null) {
+            return;
+        }
+        content.setTextColor(value % 2 == 0 ? 0xff333333 : 0xff5989E7);
     }
 }

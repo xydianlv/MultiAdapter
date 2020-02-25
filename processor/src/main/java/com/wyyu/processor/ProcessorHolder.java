@@ -136,6 +136,7 @@ public class ProcessorHolder extends AbstractProcessor {
         builder.append("import android.support.annotation.Nullable;\n");
         builder.append("import com.wyyu.multi.holder.IViewHolder;\n");
         builder.append("import com.wyyu.multi.cell.IHolderCellWithCreate;\n");
+        builder.append("import com.wyyu.multi.cell.IHolderCell;\n");
         builder.append("import android.view.LayoutInflater;\n");
         builder.append("import android.view.ViewGroup;\n");
         builder.append("import android.view.View;\n\n");
@@ -153,6 +154,12 @@ public class ProcessorHolder extends AbstractProcessor {
         builder.append("        return new ").append(holderName).append("(");
         builder.append("LayoutInflater.from(parent.getContext())\n");
         builder.append("            .inflate(").append(layoutStr).append(", parent, false));\n");
+        builder.append("    }\n\n");
+
+        builder.append("    @Override\n");
+        builder.append("    public IHolderCell findCellFromViewHolder");
+        builder.append("(@NonNull RecyclerView.ViewHolder viewHolder) {\n");
+        builder.append("        return ((").append(holderName).append(")viewHolder).cell;\n");
         builder.append("    }\n\n");
 
         builder.append("    @Override\n");

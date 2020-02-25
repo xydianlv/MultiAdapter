@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import com.wyyu.multi.cell.IHolderCell;
 
 /**
  * Created by wyyu on 2019-09-27.
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 public interface IViewHolder {
 
     RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent);
+
+    IHolderCell findCellFromViewHolder(@NonNull RecyclerView.ViewHolder viewHolder);
 
     void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @NonNull Object item);
 

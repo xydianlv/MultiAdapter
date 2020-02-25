@@ -1,6 +1,7 @@
 package com.wyyu.multi.adapter;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import com.wyyu.multi.cell.IHolderCell;
 import java.util.List;
@@ -101,4 +102,13 @@ public interface IAdapterMulti<T, V> {
      * @param item 待更新的 Item
      */
     void notifyItem(V item);
+
+    /**
+     * 根据列表位置获取到对应的 IHolderCell
+     *
+     * @param recyclerView RecyclerView
+     * @param position 列表位置
+     * @return 返回 IHolderCell
+     */
+    @Nullable IHolderCell findCellFromPosition(@NonNull RecyclerView recyclerView, int position);
 }

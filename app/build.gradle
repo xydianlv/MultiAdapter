@@ -8,7 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -16,51 +16,33 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.2.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test:runner:1.3.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-beta01'
 
     // ButterKnife，注解绑定控件框架
-    //noinspection GradleDependency
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    //noinspection GradleDependency
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     // RecyclerView
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha03'
     // RXJava
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.3.8'
     // 官方MVP架构 LifeCycle
-    implementation "android.arch.lifecycle:runtime:1.1.1"
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     // 消息收发框架
     implementation 'com.jeremyliao:live-event-bus:1.1.0'
-
-    // Litho 动态加载布局框架
-    //noinspection GradleDependency
-    implementation 'com.facebook.litho:litho-core:0.21.0'
-    //noinspection GradleDependency
-    implementation 'com.facebook.litho:litho-widget:0.21.0'
-    //noinspection GradleDependency
-    implementation 'com.facebook.litho:litho-annotations:0.21.0'
-    //noinspection GradleDependency
-    annotationProcessor 'com.facebook.litho:litho-processor:0.21.0'
-    // Litho 框架已扩展的自定义控件
-    //noinspection GradleDependency
-    implementation 'com.facebook.litho:litho-sections-core:0.21.0'
-    //noinspection GradleDependency
-    implementation 'com.facebook.litho:litho-sections-widget:0.21.0'
-    //noinspection GradleDependency
-    implementation 'com.facebook.litho:litho-sections-annotations:0.21.0'
-    // Litho 初始化
-    implementation 'com.facebook.soloader:soloader:0.6.0'
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(':expand')
     implementation project(':multi')

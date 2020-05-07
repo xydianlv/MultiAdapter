@@ -1,6 +1,6 @@
 package com.wyyu.multi.cell;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by wyyu on 2019-09-27.

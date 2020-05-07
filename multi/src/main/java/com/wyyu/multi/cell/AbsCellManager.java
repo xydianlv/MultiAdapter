@@ -1,8 +1,8 @@
 package com.wyyu.multi.cell;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 import com.wyyu.multi.holder.IViewHolder;
 import java.util.Arrays;
@@ -106,14 +106,8 @@ public abstract class AbsCellManager<T, V> implements ICellManager<T, V> {
         holderArray[viewHolder.getItemViewType()].bindViewHolderParams(viewHolder, params);
     }
 
-    @Override
-    public void updateItem(@NonNull RecyclerView.ViewHolder holder, V item, int updateType,
+    @Override public void updateItem(@NonNull RecyclerView.ViewHolder holder, int updateType,
         Object... params) {
-        holderArray[holder.getItemViewType()].updateItem(holder, item, updateType, params);
-    }
-
-    @Override
-    public IHolderCell findCellFromViewHolder(@NonNull RecyclerView.ViewHolder holder) {
-        return holderArray[holder.getItemViewType()].findCellFromViewHolder(holder);
+        holderArray[holder.getItemViewType()].updateItem(holder, updateType, params);
     }
 }

@@ -1,13 +1,11 @@
 package wyyu.multi;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import wyyu.multi.litho.ActivityLithoCardList;
-import wyyu.multi.list.ActivityList;
-import wyyu.multi.multi.ActivityMultiList;
-import wyyu.multi.update.ActivityUpdateList;
+import wyyu.multi.cell_class.ActivityListClass;
+import wyyu.multi.cell_integer.ActivityListInteger;
+import wyyu.multi.normal.ActivityListNormal;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,27 +13,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.click_list).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.click_normal).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ActivityList.class));
+                ActivityListNormal.open(MainActivity.this);
             }
         });
 
-        findViewById(R.id.click_multi).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.click_cell_class).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ActivityMultiList.class));
+                ActivityListClass.open(MainActivity.this);
             }
         });
 
-        findViewById(R.id.click_update).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.click_cell_integer).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                ActivityUpdateList.open(MainActivity.this);
-            }
-        });
-
-        findViewById(R.id.click_litho).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                ActivityLithoCardList.open(MainActivity.this);
+                ActivityListInteger.open(MainActivity.this);
             }
         });
     }

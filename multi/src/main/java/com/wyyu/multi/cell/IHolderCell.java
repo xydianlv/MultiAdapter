@@ -1,7 +1,7 @@
 package com.wyyu.multi.cell;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by wyyu on 2019-09-27.
@@ -13,5 +13,5 @@ public interface IHolderCell {
 
     void bindParams(@Nullable Object... params);
 
-    void updateCell(@NonNull Object item, int updateType, Object... params);
+    void updateCell(int updateType, Object... params);
 }

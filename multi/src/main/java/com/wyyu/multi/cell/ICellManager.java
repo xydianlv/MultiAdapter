@@ -1,8 +1,8 @@
 package com.wyyu.multi.cell;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 /**
@@ -43,14 +43,6 @@ public interface ICellManager<T, V> {
     T loadKeyFromItem(@NonNull V item);
 
     /**
-     * 通过 ViewHolder 找到持有的 HolderCell 对象
-     *
-     * @param holder ViewHolder
-     * @return IHolderCell
-     */
-    IHolderCell findCellFromViewHolder(@NonNull RecyclerView.ViewHolder holder);
-
-    /**
      * 根据 ViewType 创建相应的 ViewHolder
      *
      * @param parent 父布局
@@ -79,10 +71,8 @@ public interface ICellManager<T, V> {
      * 根据新变更的数据局部刷新 ItemView
      *
      * @param holder 持有该数据的 ViewHolder
-     * @param item 变更后的数据
      * @param updateType 刷新类型，在 HolderBinder 中定制局部刷新方式
      * @param params 更新 Item 的扩展参数
      */
-    void updateItem(@NonNull RecyclerView.ViewHolder holder, V item, int updateType,
-        Object... params);
+    void updateItem(@NonNull RecyclerView.ViewHolder holder, int updateType, Object... params);
 }

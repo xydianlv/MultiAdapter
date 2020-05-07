@@ -1,6 +1,6 @@
 package com.wyyu.expand;
 
-import android.support.annotation.IdRes;
+import androidx.annotation.IdRes;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

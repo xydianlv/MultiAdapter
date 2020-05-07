@@ -131,9 +131,9 @@ public class ProcessorHolder extends AbstractProcessor {
 
         builder.append("package ").append(packageName).append(";\n\n");
 
-        builder.append("import android.support.v7.widget.RecyclerView;\n");
-        builder.append("import android.support.annotation.NonNull;\n");
-        builder.append("import android.support.annotation.Nullable;\n");
+        builder.append("import androidx.recyclerview.widget.RecyclerView;\n");
+        builder.append("import androidx.annotation.NonNull;\n");
+        builder.append("import androidx.annotation.Nullable;\n");
         builder.append("import com.wyyu.multi.holder.IViewHolder;\n");
         builder.append("import com.wyyu.multi.cell.IHolderCellWithCreate;\n");
         builder.append("import com.wyyu.multi.cell.IHolderCell;\n");
@@ -157,12 +157,6 @@ public class ProcessorHolder extends AbstractProcessor {
         builder.append("    }\n\n");
 
         builder.append("    @Override\n");
-        builder.append("    public IHolderCell findCellFromViewHolder");
-        builder.append("(@NonNull RecyclerView.ViewHolder viewHolder) {\n");
-        builder.append("        return ((").append(holderName).append(")viewHolder).cell;\n");
-        builder.append("    }\n\n");
-
-        builder.append("    @Override\n");
         builder.append("    public void onBindViewHolder");
         builder.append("(@NonNull RecyclerView.ViewHolder holder, @NonNull Object item) {\n");
         builder.append("        ((").append(holderName).append(")holder).cell.cacheCell(item);\n");
@@ -177,10 +171,10 @@ public class ProcessorHolder extends AbstractProcessor {
 
         builder.append("    @Override\n");
         builder.append("    public void updateItem");
-        builder.append("(@NonNull RecyclerView.ViewHolder holder, @NonNull Object item,");
+        builder.append("(@NonNull RecyclerView.ViewHolder holder, ");
         builder.append(" int updateType, Object... params) {\n");
         builder.append("        ((").append(holderName).append(")holder).cell");
-        builder.append(".updateCell(item, updateType, params);\n");
+        builder.append(".updateCell(updateType, params);\n");
         builder.append("    }\n\n");
 
         builder.append("    private static class ").append(holderName);

@@ -1,8 +1,6 @@
 package com.wyyu.multi.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
 import com.wyyu.multi.cell.IHolderCell;
 import java.util.List;
 
@@ -11,11 +9,13 @@ import java.util.List;
  *
  * 约定该 Adapter 具有的最基本的一些功能
  *
- * register ： 注册 Holder类型 到 Adapter
+ * getBindParams ： 向实现了 IHolderCell 的卡片在 onBind 时提供扩展数据
  *
- * initItemList、appendItemList、insertItem、removeItem ： 列表的 增、删 操作
+ * getItemList ： 获取 MultiAdapter 当前持有的数据列表
  *
- * updateItem、notifyItem ： 刷新 Item
+ * register ： 注册实现了 IHolderCell 的卡片到 MultiAdapter
+ *
+ * updateItem ： 通过 updateType 刷新指定 Item 的局部区域
  *
  * MultiAdapter 中已实现的方法无法满足需求时，可新建一个子类继承 MultiAdapter，再编写符合需求的方法或变量
  **/
@@ -45,70 +45,11 @@ public interface IAdapterMulti<T, V> {
     void register(@NonNull T keyValue, @NonNull IHolderCell holderCell);
 
     /**
-     * 初始化列表
-     *
-     * @param itemList 初始化列表数据
-     * @param needClear 是否需要清空列表，true —— 清空列表重新填充，false —— 将这一组数据插入到列表头
-     */
-    void initItemList(List<V> itemList, boolean needClear);
-
-    /**
-     * 添加一组数据到列表尾部
-     *
-     * @param itemList 待添加数据
-     */
-    void appendItemList(List<V> itemList);
-
-    /**
-     * 插入一个数据到指定位置
-     *
-     * @param item 待插入数据
-     * @param position 指定位置
-     */
-    void insertItem(V item, int position);
-
-    /**
-     * 移除列表中指定数据
-     *
-     * @param item 待移除数据
-     */
-    void removeItem(V item);
-
-    /**
-     * 根据新变更的数据局部刷新 ItemView
-     * 通过 RecyclerView 获取到待刷新的 ViewHolder，调用 BinderManager 中的 updateItem 方法，即可实现局部刷新
-     *
-     * @param recyclerView 用来获取 ViewHolder
-     * @param item 变更后的数据
-     * @param updateType 刷新类型，在 HolderBinder 中定制局部刷新方式
-     * @param params 更新 Item 的扩展参数
-     */
-    void updateItem(@NonNull RecyclerView recyclerView, V item, int updateType, Object... params);
-
-    /**
      * 根据新变更的数据局部刷新 ItemView
      *
-     * @param recyclerView 用来获取 ViewHolder
      * @param position 发生变更的 Position
      * @param updateType 刷新类型，在 HolderBinder 中定制局部刷新方式
      * @param params 更新 Item 的扩展参数
      */
-    void updateItem(@NonNull RecyclerView recyclerView, int position, int updateType,
-        Object... params);
-
-    /**
-     * 更新整个 Item
-     *
-     * @param item 待更新的 Item
-     */
-    void notifyItem(V item);
-
-    /**
-     * 根据列表位置获取到对应的 IHolderCell
-     *
-     * @param recyclerView RecyclerView
-     * @param position 列表位置
-     * @return 返回 IHolderCell
-     */
-    @Nullable IHolderCell findCellFromPosition(@NonNull RecyclerView recyclerView, int position);
+    void updateItem(int position, int updateType, Object... params);
 }

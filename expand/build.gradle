@@ -4,7 +4,7 @@ apply plugin: 'com.novoda.bintray-release'
 
 publish {
     artifactId = 'expand' // 项目名称
-    publishVersion = '1.1.0' // 版本号
+    publishVersion = '2.0.0' // 版本号
     desc = '多类型滑动列表：Annotate'
     repoName = rootProject.ext.repoName
     userOrg = rootProject.ext.userOrg

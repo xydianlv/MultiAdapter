@@ -7,7 +7,7 @@ import android.view.View;
  * Created by wyyu on 2019-10-11.
  **/
 
-public interface IHolderCellWithCreate extends IHolderCell {
+public interface IHolderCreate {
 
     void onCreateView(@NonNull View itemView);
 }

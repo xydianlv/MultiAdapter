@@ -55,16 +55,18 @@ public interface ICellManager<T, V> {
      * 绑定数据到 ViewHolder
      *
      * @param holder ViewHolder
+     * @param index 在列表中的位置
      * @param item 数据
      */
-    void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, V item);
+    void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index, V item);
 
     /**
      * 在调用 onBindViewHolder 时，为 ViewHolder 设置扩展参数
      *
      * @param params 参数列表
+     * @param index 在列表中的位置
      */
-    void bindViewHolderParams(@NonNull RecyclerView.ViewHolder viewHolder,
+    void bindViewHolderParams(@NonNull RecyclerView.ViewHolder viewHolder, int index,
         @Nullable Object... params);
 
     /**

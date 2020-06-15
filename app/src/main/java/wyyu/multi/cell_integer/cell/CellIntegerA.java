@@ -18,7 +18,7 @@ import wyyu.multi.cell_integer.data.DataIntegerA;
     @CellView(R.id.cell_integer_a_content) TextView itemContent;
     @CellView(R.id.cell_integer_a_index) TextView itemIndex;
 
-    @Override public void cacheCell(@NonNull Object item) {
+    @Override public void cacheCell(int index, @NonNull Object item) {
         if (!(item instanceof DataIntegerA)) {
             return;
         }
@@ -29,7 +29,7 @@ import wyyu.multi.cell_integer.data.DataIntegerA;
         itemIndex.setText(String.valueOf(data.index));
     }
 
-    @Override public void bindParams(@Nullable Object... params) {
+    @Override public void bindParams(int index, @Nullable Object... params) {
 
     }
 

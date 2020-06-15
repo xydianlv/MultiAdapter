@@ -97,13 +97,15 @@ public abstract class AbsCellManager<T, V> implements ICellManager<T, V> {
         return holderArray[viewType].onCreateViewHolder(parent);
     }
 
-    @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, V item) {
-        holderArray[holder.getItemViewType()].onBindViewHolder(holder, item);
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index, V item) {
+        holderArray[holder.getItemViewType()].onBindViewHolder(holder, index, item);
     }
 
-    @Override public void bindViewHolderParams(@NonNull RecyclerView.ViewHolder viewHolder,
+    @Override
+    public void bindViewHolderParams(@NonNull RecyclerView.ViewHolder viewHolder, int index,
         @Nullable Object... params) {
-        holderArray[viewHolder.getItemViewType()].bindViewHolderParams(viewHolder, params);
+        holderArray[viewHolder.getItemViewType()].bindViewHolderParams(viewHolder, index, params);
     }
 
     @Override public void updateItem(@NonNull RecyclerView.ViewHolder holder, int updateType,

@@ -134,13 +134,15 @@ public class ProcessorHolder extends AbstractProcessor {
         builder.append("import androidx.recyclerview.widget.RecyclerView;\n");
         builder.append("import androidx.annotation.NonNull;\n");
         builder.append("import androidx.annotation.Nullable;\n");
+        builder.append("import androidx.annotation.Keep;\n");
         builder.append("import com.wyyu.multi.holder.IViewHolder;\n");
-        builder.append("import com.wyyu.multi.cell.IHolderCellWithCreate;\n");
+        builder.append("import com.wyyu.multi.cell.IHolderCreate;\n");
         builder.append("import com.wyyu.multi.cell.IHolderCell;\n");
         builder.append("import android.view.LayoutInflater;\n");
         builder.append("import android.view.ViewGroup;\n");
         builder.append("import android.view.View;\n\n");
 
+        builder.append("@Keep\n");
         builder.append("public final class ").append(className);
         builder.append(" implements IViewHolder {\n\n");
 
@@ -158,15 +160,15 @@ public class ProcessorHolder extends AbstractProcessor {
 
         builder.append("    @Override\n");
         builder.append("    public void onBindViewHolder");
-        builder.append("(@NonNull RecyclerView.ViewHolder holder, @NonNull Object item) {\n");
-        builder.append("        ((").append(holderName).append(")holder).cell.cacheCell(item);\n");
+        builder.append("(@NonNull RecyclerView.ViewHolder holder, int index, @NonNull Object item) {\n");
+        builder.append("        ((").append(holderName).append(")holder).cell.cacheCell(index, item);\n");
         builder.append("    }\n\n");
 
         builder.append("    @Override\n");
         builder.append("    public void bindViewHolderParams");
-        builder.append("(@NonNull RecyclerView.ViewHolder holder, @Nullable Object... params) {\n");
+        builder.append("(@NonNull RecyclerView.ViewHolder holder, int index, @Nullable Object... params) {\n");
         builder.append("        ((").append(holderName).append(")holder)");
-        builder.append(".cell.bindParams(params);\n");
+        builder.append(".cell.bindParams(index, params);\n");
         builder.append("    }\n\n");
 
         builder.append("    @Override\n");
@@ -195,17 +197,17 @@ public class ProcessorHolder extends AbstractProcessor {
         }
 
         builder.append("\n");
-        builder.append("            if (cell instanceof IHolderCellWithCreate) {\n");
-        builder.append("                ((IHolderCellWithCreate) cell).onCreateView(itemView);\n");
+        builder.append("            if (cell instanceof IHolderCreate) {\n");
+        builder.append("                ((IHolderCreate) cell).onCreateView(itemView);\n");
         builder.append("            }\n");
 
         builder.append("        }\n");
 
-        builder.append("        private void bindParams(Object... params) {\n");
-        builder.append("            if (cell != null) {\n");
-        builder.append("                cell.bindParams(params);\n");
-        builder.append("            }\n");
-        builder.append("        }\n");
+        //builder.append("        private void bindParams(Object... params) {\n");
+        //builder.append("            if (cell != null) {\n");
+        //builder.append("                cell.bindParams(params);\n");
+        //builder.append("            }\n");
+        //builder.append("        }\n");
 
         builder.append("    }\n");
 

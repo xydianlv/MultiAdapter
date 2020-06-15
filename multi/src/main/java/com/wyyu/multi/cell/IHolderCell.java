@@ -9,9 +9,9 @@ import androidx.annotation.Nullable;
 
 public interface IHolderCell {
 
-    void cacheCell(@NonNull Object item);
+    void cacheCell(int index, @NonNull Object item);
 
-    void bindParams(@Nullable Object... params);
+    void bindParams(int index, @Nullable Object... params);
 
     void updateCell(int updateType, Object... params);
 }

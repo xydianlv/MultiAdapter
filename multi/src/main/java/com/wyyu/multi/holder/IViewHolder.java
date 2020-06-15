@@ -13,9 +13,10 @@ public interface IViewHolder {
 
     RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent);
 
-    void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @NonNull Object item);
+    void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int index, @NonNull Object item);
 
-    void bindViewHolderParams(@NonNull RecyclerView.ViewHolder holder, @Nullable Object... params);
+    void bindViewHolderParams(@NonNull RecyclerView.ViewHolder holder, int index,
+        @Nullable Object... params);
 
     void updateItem(@NonNull RecyclerView.ViewHolder viewHolder, int updateType, Object... params);
 }

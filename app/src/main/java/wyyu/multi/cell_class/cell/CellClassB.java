@@ -19,7 +19,7 @@ import wyyu.multi.cell_class.data.DataClassB;
     @CellView(R.id.cell_class_b_image) ImageView itemImage;
     @CellView(R.id.cell_class_b_index) TextView itemIndex;
 
-    @Override public void cacheCell(@NonNull Object item) {
+    @Override public void cacheCell(int index, @NonNull Object item) {
         if (!(item instanceof DataClassB)) {
             return;
         }
@@ -30,7 +30,7 @@ import wyyu.multi.cell_class.data.DataClassB;
         itemIndex.setText(String.valueOf(data.index));
     }
 
-    @Override public void bindParams(@Nullable Object... params) {
+    @Override public void bindParams(int index, @Nullable Object... params) {
 
     }
 

@@ -35,8 +35,8 @@ public class MultiAdapter<T, V> extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        cellManager.onBindViewHolder(viewHolder, itemList.get(i));
-        cellManager.bindViewHolderParams(viewHolder, getBindParams());
+        cellManager.onBindViewHolder(viewHolder, i, itemList.get(i));
+        cellManager.bindViewHolderParams(viewHolder, i, getBindParams());
     }
 
     @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position,

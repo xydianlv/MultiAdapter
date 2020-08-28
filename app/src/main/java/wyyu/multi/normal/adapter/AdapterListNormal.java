@@ -16,9 +16,6 @@ import wyyu.multi.normal.holder.HolderNormalB;
 
 public class AdapterListNormal extends RecyclerView.Adapter {
 
-    private static final int ITEM_A = 0;
-    private static final int ITEM_B = 1;
-
     private List<DataNormal> dataList;
 
     public AdapterListNormal() {
@@ -27,7 +24,7 @@ public class AdapterListNormal extends RecyclerView.Adapter {
 
     @NonNull @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == ITEM_A) {
+        if (viewType == HolderNormalA.LAYOUT) {
             return new HolderNormalA(LayoutInflater.from(parent.getContext())
                 .inflate(HolderNormalA.LAYOUT, parent, false));
         } else {
@@ -38,17 +35,17 @@ public class AdapterListNormal extends RecyclerView.Adapter {
 
     @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
-            case ITEM_A:
+            case HolderNormalA.LAYOUT:
                 ((HolderNormalA) holder).setItemValue(dataList.get(position));
                 break;
-            case ITEM_B:
+            case HolderNormalB.LAYOUT:
                 ((HolderNormalB) holder).setItemValue(dataList.get(position));
                 break;
         }
     }
 
     @Override public int getItemViewType(int position) {
-        return dataList.get(position).index % 2 == 0 ? ITEM_A : ITEM_B;
+        return dataList.get(position).index % 2 == 0 ? HolderNormalA.LAYOUT : HolderNormalB.LAYOUT;
     }
 
     @Override public int getItemCount() {

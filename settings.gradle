@@ -1,0 +1,5 @@
+rootProject.name = "MultiKTest"
+include ':app'
+include ':multi'
+include ':processor'
+include ':expand'

@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">MultiKTest</string>
+
+  <string name="click_normal">Normal</string>
+  <string name="click_cell_class">CellClass</string>
+  <string name="click_cell_integer">CellInteger</string>
+
+</resources>

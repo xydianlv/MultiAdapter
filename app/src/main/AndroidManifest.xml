@@ -26,6 +26,11 @@
         android:screenOrientation="fullSensor"
         />
 
+    <activity
+        android:name=".normal.ActivityListNormal"
+        android:screenOrientation="fullSensor"
+      />
+
   </application>
 
 </manifest>

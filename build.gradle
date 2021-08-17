@@ -6,7 +6,9 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:7.0.0'
+    //这里不要给 gradle 升级，否则 JDK 版本无法匹对
+    //noinspection AndroidGradlePluginVersion
+    classpath 'com.android.tools.build:gradle:4.0.0'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
     // NOTE: Do not place your application dependencies here; they belong

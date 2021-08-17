@@ -12,6 +12,7 @@ import com.wyyu.multiktest.cell_class.data.DataClassA
 import com.wyyu.multiktest.cell_class.data.DataClassB
 import com.wyyu.multiktest.cell_class.holder.HolderClassA
 import com.wyyu.multiktest.cell_class.holder.HolderClassB
+import com.wyyu.multiktest.cell_class.holder.HolderClassJ
 import com.wyyu.multiktest.databinding.ActivityListClassBinding
 
 /**
@@ -48,8 +49,8 @@ class ActivityListClass : AppCompatActivity() {
             return
         }
         adapter = ListClassAdapter(ClassCellManager(), binding!!.listClassRecycler)
-        adapter!!.registerItem(DataClassA::class.java, HolderClassA())
-        adapter!!.registerItem(DataClassB::class.java, HolderClassB())
+        adapter!!.registerItem(DataClassA::class.java, HolderClassJ())
+        adapter!!.registerItem(DataClassB::class.java, HolderClassJ())
 
         binding?.listClassRecycler?.layoutManager = LinearLayoutManager(this)
         binding?.listClassRecycler?.adapter = adapter

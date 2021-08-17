@@ -2,6 +2,7 @@ package com.wyyu.multiktest.cell_class.holder
 
 import com.wyyu.expand.BindHolder
 import com.wyyu.multi.cell.IHolderCell
+import com.wyyu.multiktest.cell_class.data.DataClassA
 import com.wyyu.multiktest.databinding.LayoutHolderClassABinding
 
 /**
@@ -20,7 +21,11 @@ class HolderClassA : IHolderCell {
     }
 
     override fun onBindCell(position: Int, itemData: Any?, vararg params: Any?) {
-
+        if (itemData !is DataClassA) {
+            return
+        }
+        binding?.cellClassAIndex?.text = itemData.index.toString()
+        binding?.cellClassAContent?.text = itemData.content
     }
 
     override fun onUpdateCell(updateType: Int, vararg params: Any?) {

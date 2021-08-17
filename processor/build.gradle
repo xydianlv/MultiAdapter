@@ -12,7 +12,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   // Java 中由类名和包名生成 Java文件 的库
-  implementation 'com.squareup:javapoet:1.11.1'
+  implementation 'com.squareup:javapoet:1.13.0'
 
   implementation project(':expand')
 }

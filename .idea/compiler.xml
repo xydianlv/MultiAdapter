@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
-      <module name="MultiKTest.app" target="1.8" />
-      <module name="MultiKTest.multi" target="1.8" />
+      <module name="MultiKTest.app" target="11" />
+      <module name="MultiKTest.multi" target="11" />
       <module name="MultiKTest.test" target="11" />
     </bytecodeTargetLevel>
   </component>

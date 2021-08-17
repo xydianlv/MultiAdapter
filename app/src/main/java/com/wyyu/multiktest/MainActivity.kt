@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.wyyu.multiktest.cell_class.ActivityListClass
 import com.wyyu.multiktest.databinding.ActivityMainBinding
+import com.wyyu.multiktest.normal.ActivityListNormal
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val clickListener = View.OnClickListener { view ->
             when (view.id) {
                 R.id.click_normal -> {
-
+                    ActivityListNormal.open(this@MainActivity)
                 }
                 R.id.click_cell_class -> {
                     ActivityListClass.open(this@MainActivity)

@@ -20,6 +20,6 @@ class ListClassAdapter<K, D>(
         val itemList = getItemList()
         itemList.addAll(list)
 
-        notifyItemRangeChanged(0,list.size)
+        notifyItemRangeChanged(0, itemCount)
     }
 }

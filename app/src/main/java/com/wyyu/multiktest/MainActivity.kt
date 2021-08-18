@@ -3,6 +3,7 @@ package com.wyyu.multiktest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.wyyu.multiktest.cell_Integer.ActivityListInteger
 import com.wyyu.multiktest.cell_class.ActivityListClass
 import com.wyyu.multiktest.databinding.ActivityMainBinding
 import com.wyyu.multiktest.normal.ActivityListNormal
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                     ActivityListClass.open(this@MainActivity)
                 }
                 R.id.click_cell_integer -> {
-
+                    ActivityListInteger.open(this@MainActivity)
                 }
             }
         }

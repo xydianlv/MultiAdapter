@@ -9,7 +9,7 @@ import com.wyyu.multiktest.databinding.LayoutHolderClassABinding
  * Created by wyyu on 2021/7/30.
  **/
 
-@BindHolder("com.wyyu.multiktest.databinding.LayoutHolderClassABinding")
+@BindHolder("LayoutHolderClassABinding")
 class HolderClassA : IHolderCell {
 
     private var binding: LayoutHolderClassABinding? = null

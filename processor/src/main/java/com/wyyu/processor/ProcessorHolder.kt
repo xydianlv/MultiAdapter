@@ -15,7 +15,18 @@ import javax.tools.Diagnostic
 @AutoService(Processor::class)
 class ProcessorHolder : AbstractProcessor() {
 
-    // Print Msg On Building
+    companion object {
+        private const val APPLICATION_ID = "applicationId"
+    }
+
+    /**
+     * appId 的值，需要在 app:build.gradle 的 defaultConfig 中添加
+     * javaCompileOptions {
+     *  annotationProcessorOptions { arguments = [applicationId: defaultConfig.applicationId] }
+     *}
+     * 否则在 init 方法中无法找到 appId 的值
+     */
+    private var appId: String? = null
     private var msg: Messager? = null
 
     override fun init(processingEnv: ProcessingEnvironment?) {
@@ -23,11 +34,12 @@ class ProcessorHolder : AbstractProcessor() {
 
         msg = processingEnv?.messager
         msg?.printMessage(Diagnostic.Kind.NOTE, "init success")
-    }
 
-    override fun process(p0: MutableSet<out TypeElement>?, p1: RoundEnvironment?): Boolean {
-        processorCell(p1)
-        return true
+        val options = processingEnv?.options
+        if (options != null && options.isNotEmpty()) {
+            appId = options[APPLICATION_ID]
+        }
+        msg?.printMessage(Diagnostic.Kind.NOTE, "init appId : $appId")
     }
 
     override fun getSupportedSourceVersion(): SourceVersion {
@@ -40,6 +52,11 @@ class ProcessorHolder : AbstractProcessor() {
         return annotationSet
     }
 
+    override fun process(p0: MutableSet<out TypeElement>?, p1: RoundEnvironment?): Boolean {
+        processorCell(p1)
+        return true
+    }
+
     private fun processorCell(p1: RoundEnvironment?) {
         val elementSet = p1?.getElementsAnnotatedWith(BindHolder::class.java)
         if (elementSet == null || elementSet.isEmpty()) {
@@ -50,12 +67,8 @@ class ProcessorHolder : AbstractProcessor() {
                 continue
             }
             val cellName = element.qualifiedName.toString()
-            val bindingName = element.getAnnotation(BindHolder::class.java).value
+            val bindingName = element.getAnnotation(BindHolder::class.java).bindingName
 
-            msg?.printMessage(
-                Diagnostic.Kind.NOTE,
-                "processorCell -> cellName : $cellName  bindingName : $bindingName"
-            )
             generateHolder(cellName, bindingName)
         }
     }
@@ -76,7 +89,8 @@ class ProcessorHolder : AbstractProcessor() {
         strBuilder.append("import com.wyyu.multi.holder.IViewHolder;\n")
         strBuilder.append("import android.view.LayoutInflater;\n")
         strBuilder.append("import android.view.ViewGroup;\n")
-        strBuilder.append("import ").append(bindingName).append(";\n\n")
+        strBuilder.append("import ").append(appId).append(".databinding.")
+        strBuilder.append(bindingName).append(";\n\n")
 
         strBuilder.append("@Keep\n")
         strBuilder.append("public final class ").append(className)
@@ -108,14 +122,14 @@ class ProcessorHolder : AbstractProcessor() {
         strBuilder.append("    private static class ").append(holderName)
         strBuilder.append(" extends RecyclerView.ViewHolder {\n\n")
 
-        strBuilder.append("        private final ").append(cellName).append(" cell =");
+        strBuilder.append("        private final ").append(cellName).append(" cell =")
         strBuilder.append(" new ").append(cellName).append("();\n\n")
 
         strBuilder.append("        private ").append(holderName).append("(@NonNull")
         strBuilder.append(" ").append(bindingName).append(" binding) {")
         strBuilder.append("\n")
         strBuilder.append("            super(binding.getRoot());\n\n")
-        strBuilder.append("            cell.onCreateView(binding);\n\n")
+        strBuilder.append("            cell.onCreateView(binding);\n")
         strBuilder.append("        }\n")
 
         strBuilder.append("    }\n")

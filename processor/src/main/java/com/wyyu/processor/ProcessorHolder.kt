@@ -1,21 +1,28 @@
 package com.wyyu.processor
 
+import com.google.auto.service.AutoService
 import com.wyyu.expand.BindHolder
 import java.lang.StringBuilder
-import javax.annotation.processing.AbstractProcessor
-import javax.annotation.processing.ProcessingEnvironment
-import javax.annotation.processing.RoundEnvironment
+import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
 import javax.lang.model.element.TypeElement
+import javax.tools.Diagnostic
 
 /**
  * Created by wyyu on 2021/7/30.
  **/
 
+@AutoService(Processor::class)
 class ProcessorHolder : AbstractProcessor() {
+
+    // Print Msg On Building
+    private var msg: Messager? = null
 
     override fun init(processingEnv: ProcessingEnvironment?) {
         super.init(processingEnv)
+
+        msg = processingEnv?.messager
+        msg?.printMessage(Diagnostic.Kind.NOTE, "init success")
     }
 
     override fun process(p0: MutableSet<out TypeElement>?, p1: RoundEnvironment?): Boolean {
@@ -45,6 +52,10 @@ class ProcessorHolder : AbstractProcessor() {
             val cellName = element.qualifiedName.toString()
             val bindingName = element.getAnnotation(BindHolder::class.java).value
 
+            msg?.printMessage(
+                Diagnostic.Kind.NOTE,
+                "processorCell -> cellName : $cellName  bindingName : $bindingName"
+            )
             generateHolder(cellName, bindingName)
         }
     }
@@ -98,13 +109,14 @@ class ProcessorHolder : AbstractProcessor() {
         strBuilder.append(" extends RecyclerView.ViewHolder {\n\n")
 
         strBuilder.append("        private final ").append(cellName).append(" cell =");
-        strBuilder.append(" new ").append(cellName).append("()\n\n")
+        strBuilder.append(" new ").append(cellName).append("();\n\n")
 
         strBuilder.append("        private ").append(holderName).append("(@NonNull")
         strBuilder.append(" ").append(bindingName).append(" binding) {")
         strBuilder.append("\n")
         strBuilder.append("            super(binding.getRoot());\n\n")
         strBuilder.append("            cell.onCreateView(binding);\n\n")
+        strBuilder.append("        }\n")
 
         strBuilder.append("    }\n")
         strBuilder.append("}\n")

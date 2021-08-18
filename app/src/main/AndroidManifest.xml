@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.wyyu.multiktest"
     >
 
@@ -23,13 +24,13 @@
 
     <activity
         android:name=".cell_class.ActivityListClass"
-        android:screenOrientation="fullSensor"
-        />
+        android:screenOrientation="portrait"
+        tools:ignore="LockedOrientationActivity" />
 
     <activity
         android:name=".normal.ActivityListNormal"
-        android:screenOrientation="fullSensor"
-      />
+        android:screenOrientation="portrait"
+        tools:ignore="LockedOrientationActivity" />
 
   </application>
 

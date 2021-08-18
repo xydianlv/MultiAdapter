@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="MultiKTest.app" target="11" />
       <module name="MultiKTest.multi" target="11" />
+      <module name="MultiKTest.processor" target="1.8" />
       <module name="MultiKTest.test" target="11" />
     </bytecodeTargetLevel>
   </component>

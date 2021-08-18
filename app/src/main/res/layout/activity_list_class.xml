@@ -4,11 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50.0dp"
-        android:background="@color/bg" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_class_recycler"
         android:layout_width="match_parent"

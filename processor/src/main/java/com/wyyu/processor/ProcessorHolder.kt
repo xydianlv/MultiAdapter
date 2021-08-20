@@ -15,18 +15,6 @@ import javax.tools.Diagnostic
 @AutoService(Processor::class)
 class ProcessorHolder : AbstractProcessor() {
 
-    companion object {
-        private const val APPLICATION_ID = "applicationId"
-    }
-
-    /**
-     * appId 的值，需要在 app:build.gradle 的 defaultConfig 中添加
-     * javaCompileOptions {
-     *  annotationProcessorOptions { arguments = [applicationId: defaultConfig.applicationId] }
-     *}
-     * 否则在 init 方法中无法找到 appId 的值
-     */
-    private var appId: String? = null
     private var msg: Messager? = null
 
     override fun init(processingEnv: ProcessingEnvironment?) {
@@ -34,12 +22,6 @@ class ProcessorHolder : AbstractProcessor() {
 
         msg = processingEnv?.messager
         msg?.printMessage(Diagnostic.Kind.NOTE, "init success")
-
-        val options = processingEnv?.options
-        if (options != null && options.isNotEmpty()) {
-            appId = options[APPLICATION_ID]
-        }
-        msg?.printMessage(Diagnostic.Kind.NOTE, "init appId : $appId")
     }
 
     override fun getSupportedSourceVersion(): SourceVersion {
@@ -67,13 +49,11 @@ class ProcessorHolder : AbstractProcessor() {
                 continue
             }
             val cellName = element.qualifiedName.toString()
-            val bindingName = element.getAnnotation(BindHolder::class.java).bindingName
-
-            generateHolder(cellName, bindingName)
+            generateHolder(cellName)
         }
     }
 
-    private fun generateHolder(cellName: String, bindingName: String) {
+    private fun generateHolder(cellName: String) {
         val packageName = cellName.substring(0, cellName.lastIndexOf("."))
         val className = "Holder" + cellName.substring(cellName.lastIndexOf(".") + 1)
         val holderName = className + "Core"
@@ -89,18 +69,20 @@ class ProcessorHolder : AbstractProcessor() {
         strBuilder.append("import com.wyyu.multi.holder.IViewHolder;\n")
         strBuilder.append("import android.view.LayoutInflater;\n")
         strBuilder.append("import android.view.ViewGroup;\n")
-        strBuilder.append("import ").append(appId).append(".databinding.")
-        strBuilder.append(bindingName).append(";\n\n")
+        strBuilder.append("import android.view.View;\n\n")
 
         strBuilder.append("@Keep\n")
         strBuilder.append("public final class ").append(className)
         strBuilder.append(" implements IViewHolder {\n\n")
 
-        strBuilder.append("    @NonNull @Override\n")
+        strBuilder.append("    @NonNull\n@Override\n")
         strBuilder.append("    public RecyclerView.ViewHolder onCreateViewHolder")
         strBuilder.append("(@NonNull ViewGroup parent) {\n")
-        strBuilder.append("        return new ").append(holderName).append("(").append(bindingName)
-        strBuilder.append(".inflate(").append("LayoutInflater.from(parent.getContext())));\n")
+        strBuilder.append("        ").append(cellName).append(" cell =")
+        strBuilder.append(" new ").append(cellName).append("();\n")
+        strBuilder.append("        View itemView = LayoutInflater.from(parent.getContext())")
+        strBuilder.append(".inflate(cell.getHolderLayout(), parent, false);\n")
+        strBuilder.append("        return new ").append(holderName).append("(itemView, cell);\n")
         strBuilder.append("    }\n\n")
 
         strBuilder.append("    @Override\n")
@@ -122,14 +104,14 @@ class ProcessorHolder : AbstractProcessor() {
         strBuilder.append("    private static class ").append(holderName)
         strBuilder.append(" extends RecyclerView.ViewHolder {\n\n")
 
-        strBuilder.append("        private final ").append(cellName).append(" cell =")
-        strBuilder.append(" new ").append(cellName).append("();\n\n")
+        strBuilder.append("        private ").append(cellName).append(" cell;\n\n")
 
-        strBuilder.append("        private ").append(holderName).append("(@NonNull")
-        strBuilder.append(" ").append(bindingName).append(" binding) {")
+        strBuilder.append("        private ").append(holderName).append("(@NonNull ")
+        strBuilder.append("View itemView, @NonNull ").append(cellName).append(" cell) {")
         strBuilder.append("\n")
-        strBuilder.append("            super(binding.getRoot());\n\n")
-        strBuilder.append("            cell.onCreateView(binding);\n")
+        strBuilder.append("            super(itemView);\n\n")
+        strBuilder.append("            this.cell = cell;\n\n")
+        strBuilder.append("            this.cell.onCreateView(itemView);\n")
         strBuilder.append("        }\n")
 
         strBuilder.append("    }\n")

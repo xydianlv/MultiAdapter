@@ -1,12 +1,18 @@
 package com.wyyu.multi.cell
 
+import android.view.View
+import androidx.annotation.LayoutRes
+
 /**
  * Created by wyyu on 2021/7/29.
  **/
 
 interface IHolderCell {
 
-    fun onCreateView(binding: Any)
+    @LayoutRes
+    fun getHolderLayout(): Int
+
+    fun onCreateView(itemView: View)
 
     fun onBindCell(position: Int, itemData: Any?, vararg params: Any?)
 

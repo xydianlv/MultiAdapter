@@ -6,4 +6,4 @@ package com.wyyu.expand
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.BINARY)
-annotation class BindHolder(val bindingName: String)
+annotation class BindHolder

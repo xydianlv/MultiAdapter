@@ -1,7 +1,9 @@
 package com.wyyu.multiktest.cell_class.holder
 
+import android.view.View
 import com.wyyu.expand.BindHolder
 import com.wyyu.multi.cell.IHolderCell
+import com.wyyu.multiktest.R
 import com.wyyu.multiktest.cell_class.data.DataClassA
 import com.wyyu.multiktest.databinding.LayoutHolderClassABinding
 
@@ -9,15 +11,17 @@ import com.wyyu.multiktest.databinding.LayoutHolderClassABinding
  * Created by wyyu on 2021/7/30.
  **/
 
-@BindHolder("LayoutHolderClassABinding")
+@BindHolder
 class HolderClassA : IHolderCell {
 
     private var binding: LayoutHolderClassABinding? = null
 
-    override fun onCreateView(binding: Any) {
-        if (binding is LayoutHolderClassABinding) {
-            this.binding = binding
-        }
+    override fun getHolderLayout(): Int {
+        return R.layout.layout_holder_class_a
+    }
+
+    override fun onCreateView(itemView: View) {
+        binding = LayoutHolderClassABinding.bind(itemView)
     }
 
     override fun onBindCell(position: Int, itemData: Any?, vararg params: Any?) {

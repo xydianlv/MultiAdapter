@@ -1,0 +1,59 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set("sources")
+    archiveClassifier.set("javadoc")
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId PUBLISH_GROUP_ID
+            artifactId PUBLISH_ARTIFACT_ID
+            version PUBLISH_VERSION
+
+//            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+//            artifact androidSourcesJar
+
+            pom {
+                name = 'MultiAdapter'
+                description = 'Adapter For RecyclerView'
+                url = 'https://github.com/xydianlv/MultiAdapter-Kotlin'
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'xydian'
+                        name = 'xydian'
+                        email = 'email address'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:github.com/xydianlv/MultiAdapter-Kotlin.git'
+                    developerConnection = 'scm:git:ssh://github.com/xydianlv/MultiAdapter-Kotlin.git'
+                    url = 'https://github.com/xydianlv/MultiAdapter-Kotlin.git'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "MultiAdapter"
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+
+            credentials {
+                username = "sonatype username"
+                password = "sonatype password"
+            }
+        }
+    }
+}
+signing {
+    sign publishing.publications
+}

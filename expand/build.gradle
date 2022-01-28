@@ -11,3 +11,10 @@ java {
 dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
+
+ext {
+  PUBLISH_GROUP_ID = "com.unvnv.multi-adapter"
+  PUBLISH_ARTIFACT_ID = 'expand'
+  PUBLISH_VERSION = '1.0.0'
+}
+apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"

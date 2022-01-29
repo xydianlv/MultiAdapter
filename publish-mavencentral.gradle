@@ -9,9 +9,9 @@ task androidSourcesJar(type: Jar) {
 publishing {
     publications {
         release(MavenPublication) {
-            groupId PUBLISH_GROUP_ID
+            groupId "com.unvnv.multi-adapter"
             artifactId PUBLISH_ARTIFACT_ID
-            version PUBLISH_VERSION
+            version '1.0.1'
 
 //            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
 //            artifact androidSourcesJar
@@ -31,7 +31,7 @@ publishing {
                     developer {
                         id = 'xydian'
                         name = 'xydian'
-                        email = 'email address'
+                        email = 'account@email.com'
                     }
                 }
                 scm {

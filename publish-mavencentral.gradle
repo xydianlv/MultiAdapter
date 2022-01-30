@@ -11,10 +11,10 @@ publishing {
         release(MavenPublication) {
             groupId "com.unvnv.multi-adapter"
             artifactId PUBLISH_ARTIFACT_ID
-            version '1.0.1'
+            version '1.0.2'
 
-//            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-//            artifact androidSourcesJar
+            artifact("$buildDir/libs/${project.getName()}-javadoc.jar")
+            artifact androidSourcesJar
 
             pom {
                 name = 'MultiAdapter'

@@ -11,8 +11,3 @@ java {
 dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
-
-ext {
-  PUBLISH_ARTIFACT_ID = 'expand'
-}
-apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"

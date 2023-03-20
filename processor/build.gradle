@@ -20,8 +20,3 @@ dependencies {
 
   implementation project(':expand')
 }
-
-ext {
-  PUBLISH_ARTIFACT_ID = 'processor'
-}
-apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
